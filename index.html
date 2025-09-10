@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphic Design Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f5f4f2;
+      color: #333;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #1f1f2e;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+    }
+
+    .nav-item {
+      margin: 15px 0;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      background-color: #34344f;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #6b4c3b;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      width: calc(33.333% - 20px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card .caption {
+      padding: 15px;
+      text-align: center;
+      font-weight: 600;
+      color: #444;
+    }
+
+    @media(max-width: 900px) {
+      .card {
+        width: calc(50% - 20px);
+      }
+    }
+
+    @media(max-width: 600px) {
+      .card {
+        width: 100%;
+      }
+
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Design Types</h2>
+    <div class="nav-item active" onclick="filterDesign('all')">All</div>
+    <div class="nav-item" onclick="filterDesign('pamphlet')">Pamphlets</div>
+    <div class="nav-item" onclick="filterDesign('poster')">Posters</div>
+    <div class="nav-item" onclick="filterDesign('dangler')">Danglers</div>
+    <div class="nav-item" onclick="filterDesign('visiting')">Visiting Cards</div>
+    <div class="nav-item" onclick="filterDesign('jewelry')">Jewelry Theme</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <h1>Graphic Design Gallery</h1>
+    <div class="gallery" id="gallery">
+      <!-- Sample Design Cards -->
+      <div class="card" data-type="pamphlet">
+        <img src="https://via.placeholder.com/400x200?text=Pamphlet+Design" alt="Pamphlet">
+        <div class="caption">Pamphlet Design</div>
+      </div>
+      <div class="card" data-type="poster">
+        <img src="https://via.placeholder.com/400x200?text=Poster+Design" alt="Poster">
+        <div class="caption">Poster Design</div>
+      </div>
+      <div class="card" data-type="dangler">
+        <img src="https://via.placeholder.com/400x200?text=Dangler+Design" alt="Dangler">
+        <div class="caption">Dangler Design</div>
+      </div>
+      <div class="card" data-type="visiting">
+        <img src="https://via.placeholder.com/400x200?text=Visiting+Card" alt="Visiting Card">
+        <div class="caption">Visiting Card</div>
+      </div>
+      <div class="card" data-type="jewelry">
+        <img src="https://via.placeholder.com/400x200?text=Jewelry+Themed+Dangler" alt="Jewelry">
+        <div class="caption">Jewelry-Themed Dangler</div>
+      </div>
+      <div class="card" data-type="jewelry">
+        <img src="https://via.placeholder.com/400x200?text=Jewelry+Poster" alt="Jewelry Poster">
+        <div class="caption">Jewelry Poster</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function filterDesign(type) {
+      const cards = document.querySelectorAll('.card');
+      const navItems = document.querySelectorAll('.nav-item');
+
+      navItems.forEach(item => item.classList.remove('active'));
+      event.target.classList.add('active');
+
+      cards.forEach(card => {
+        if (type === 'all' || card.dataset.type === type) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
